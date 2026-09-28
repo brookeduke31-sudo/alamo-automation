@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Alamo Automation Agency</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    :root {
+      --bg: #f7f7f7;
+      --text: #1a1a1a;
+      --accent: #4f46e5;
+      --accent-light: #6366f1;
+      --card: #ffffff;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Inter", system-ui, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    /* Fade-in animation */
+    .fade-in {
+      animation: fadeIn 1.2s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    header {
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-circle {
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .brand-text h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .brand-text p {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    nav a {
+      margin-left: 1rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      text-align: left;
+      padding: 2rem 1.5rem;
+      background: var(--card);
+      border-radius: 1rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      margin-bottom: 3rem;
+    }
+
+    .hero h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0.5rem 0 1.5rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 0.9rem 1.8rem;
+      border-radius: 999px;
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.2s ease;
+      font-size: 0.95rem;
+    }
+
+    .cta-btn.secondary {
+      background: #e5e7eb;
+      color: #111827;
+    }
+
+    .cta-btn:hover {
+      background: var(--accent-light);
+      transform: translateY(-2px);
+    }
+
+    .cta-btn.secondary:hover {
+      background: #d1d5db;
+      transform: translateY(-2px);
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    section h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    section p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 0.9rem;
+      padding: 1.2rem 1.3rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+
+    .card h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+
+    .pricing-tier {
+      background: var(--card);
+      border-radius: 0.9rem;
+      padding: 1.3rem 1.4rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+
+    .pricing-tier h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+      font-weight: 700;
+    }
+
+    .price {
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .pricing-tier ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 0.5rem;
+    }
+
+    .pricing-tier li {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .steps {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .steps li {
+      margin-bottom: 0.7rem;
+      color: var(--muted);
+    }
+
+    .steps span {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .contact {
+      background: var(--card);
+      border-radius: 1rem;
+      padding: 1.5rem 1.6rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .contact form {
+      display: grid;
+      gap: 0.8rem;
+      margin-top: 0.5rem;
+    }
+
+    .contact input,
+    .contact textarea,
+    .contact select {
+      padding: 0.6rem 0.7rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+      background: #fafafa;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .contact textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .contact button {
+      margin-top: 0.4rem;
+      padding: 0.8rem 1.4rem;
+      border-radius: 999px;
+      border: none;
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .contact button:hover {
+      background: var(--accent-light);
+      transform: translateY(-2px);
+    }
+
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .testimonial-card {
+      background: var(--card);
+      border-radius: 0.9rem;
+      padding: 1.2rem 1.3rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+
+    .testimonial-card p {
+      margin-bottom: 0.75rem;
+    }
+
+    .testimonial-name {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .testimonial-role {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .pricing-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .pricing-table th,
+    .pricing-table td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.7rem;
+      text-align: left;
+    }
+
+    .pricing-table th {
+      background: #eef2ff;
+      color: #111827;
+      font-weight: 600;
+    }
+
+    .pricing-table td {
+      background: #ffffff;
+      color: var(--muted);
+    }
+
+    .pricing-table td.plan {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2.5rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        margin-top: 0.75rem;
+      }
+
+      .hero {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper fade-in">
+
+    <!-- HEADER + NAV -->
+    <header>
+      <div class="brand">
+        <div class="logo-circle">AA</div>
+        <div class="brand-text">
+          <h1>Alamo Automation Agency</h1>
+          <p>Automation for San Antonio service businesses.</p>
+        </div>
+      </div>
+      <nav>
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#book">Book Demo</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section id="hero" class="hero fade-in">
+      <h2>Stop doing everything manually.</h2>
+      <p>
+        We help San Antonio businesses stop wasting time on manual messages, booking, reminders, and reviews.
+        Your customers get faster responses. You get more appointments—with less effort.
+      </p>
+      <div class="hero-buttons">
+        <a href="#book" class="cta-btn">Book a free automation demo</a>
+        <a href="#pricing" class="cta-btn secondary">View pricing</a>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="fade-in">
+      <h3>About Alamo Automation</h3>
+      <p>
+        Alamo Automation Agency exists for one reason: to help San Antonio service businesses stop drowning in
+        DMs, missed calls, and forgotten follow‑ups. We build simple, done‑for‑you automation systems that
+        handle customer replies, booking, reminders, reviews, and lead follow‑up—so you can focus on the work
+        you actually enjoy.
+      </p>
+      <p>
+        We speak plain language, not tech jargon. You tell us what’s driving you crazy, and we design a system
+        that quietly fixes it in the background.
+      </p>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="fade-in">
+      <h3>Services</h3>
+      <p>We work with local service businesses that live on their phones and inboxes:</p>
+      <div class="grid">
+        <div class="card">
+          <h4>Customer response automation</h4>
+          <p>Instant replies to hours, pricing, location, booking, and FAQs so you never miss a message.</p>
+        </div>
+        <div class="card">
+          <h4>Appointment automation</h4>
+          <p>Hands‑free booking, confirmations, and reminders—perfect for barbers, nail techs, med spas, and more.</p>
+        </div>
+        <div class="card">
+          <h4>Lead follow‑up automation</h4>
+          <p>We automatically follow up with leads from your website, DMs, or ads until they respond.</p>
+        </div>
+        <div class="card">
+          <h4>Review generation automation</h4>
+          <p>After each visit or job, your customers get a simple message asking for a review.</p>
+        </div>
+        <div class="card">
+          <h4>Invoice & quote automation</h4>
+          <p>Send quotes and invoices automatically after a request or completed job.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="fade-in">
+      <h3>Pricing</h3>
+      <p>Simple monthly plans. Every plan starts with a free demo—you only pay if you like what you see.</p>
+      <div class="grid">
+        <div class="pricing-tier">
+          <h4>Starter</h4>
+          <div class="price">$300 / month</div>
+          <ul>
+            <li>Auto‑reply system</li>
+            <li>Basic booking automation</li>
+          </ul>
+        </div>
+        <div class="pricing-tier">
+          <h4>Growth</h4>
+          <div class="price">$700 / month</div>
+          <ul>
+            <li>Auto‑reply</li>
+            <li>Booking + reminders</li>
+            <li>Review requests</li>
+          </ul>
+        </div>
+        <div class="pricing-tier">
+          <h4>Pro</h4>
+          <div class="price">$1,200 / month</div>
+          <ul>
+            <li>Everything in Growth</li>
+            <li>Lead follow‑up</li>
+            <li>Invoice automation</li>
+            <li>Custom workflows</li>
+          </ul>
+        </div>
+        <div class="pricing-tier">
+          <h4>Elite</h4>
+          <div class="price">$2,000 / month</div>
+          <ul>
+            <li>Full automation suite</li>
+            <li>Unlimited workflows</li>
+            <li>Priority support</li>
+            <li>Monthly optimization</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Pricing comparison table -->
+      <table class="pricing-table">
+        <tr>
+          <th>Plan</th>
+          <th>Auto‑reply</th>
+          <th>Booking & reminders</th>
+          <th>Reviews</th>
+          <th>Lead follow‑up</th>
+          <th>Invoices & quotes</th>
+        </tr>
+        <tr>
+          <td class="plan">Starter</td>
+          <td>Yes</td>
+          <td>Basic</td>
+          <td>No</td>
+          <td>No</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td class="plan">Growth</td>
+          <td>Yes</td>
+          <td>Full</td>
+          <td>Yes</td>
+          <td>No</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td class="plan">Pro</td>
+          <td>Yes</td>
+          <td>Full</td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <td class="plan">Elite</td>
+          <td>Yes</td>
+          <td>Full</td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>Yes</td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="fade-in">
+      <h3>Testimonials</h3>
+      <p>Real results from local businesses.</p>
+      <div class="testimonials">
+        <div class="testimonial-card">
+          <p>“We used to miss DMs all the time. Now every message gets an instant reply and books straight into our calendar.”</p>
+          <div class="testimonial-name">Maria G.</div>
+          <div class="testimonial-role">Owner, Southside Nail Studio</div>
+        </div>
+        <div class="testimonial-card">
+          <p>“No‑shows dropped and reviews went up. The automation just quietly runs in the background.”</p>
+          <div class="testimonial-name">James R.</div>
+          <div class="testimonial-role">Barber, Westside Cuts</div>
+        </div>
+        <div class="testimonial-card">
+          <p>“We don’t chase leads anymore. The system follows up until they reply, and we just close the deals.”</p>
+          <div class="testimonial-name">Dr. Patel</div>
+          <div class="testimonial-role">Med Spa, Stone Oak</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOK DEMO -->
+    <section id="book" class="contact fade-in">
+      <h3>Book a Demo</h3>
+      <p>Select a date and time that works for you. We’ll walk you through exactly how automation would work for your business.</p>
+
+      <form action="https://formsubmit.co/brookeduke31@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Demo Booking Request">
+        <input type="hidden" name="_captcha" value="false">
+
+        <label>Your Name</label>
+        <input type="text" name="name" required>
+
+        <label>Your Email</label>
+        <input type="email" name="email" required>
+
+        <label>Preferred Date</label>
+        <input type="date" name="date" required>
+
+        <label>Preferred Time</label>
+        <input type="time" name="time" required>
+
+        <label>Business Type</label>
+        <select name="business_type">
+          <option value="Tattoo / Nails">Tattoo / Nails</option>
+          <option value="Barber / Salon">Barber / Salon</option>
+          <option value="Med Spa / Dentist">Med Spa / Dentist</option>
+          <option value="Restaurant / Food Truck">Restaurant / Food Truck</option>
+          <option value="Auto / Home Services">Auto / Home Services</option>
+          <option value="Realtor / Gym / Trainer">Realtor / Gym / Trainer</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <button type="submit">Request Demo</button>
+      </form>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact fade-in">
+      <h3>Contact Us</h3>
+      <p>Tell us what you want automated—messages, booking, reminders, reviews—and we’ll show you exactly how we’d do it.</p>
+
+      <form action="https://formsubmit.co/brookeduke31@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New Automation Inquiry">
+        <input type="hidden" name="_captcha" value="false">
+
+        <label>Name</label>
+        <input type="text" name="name" required>
+
+        <label>Business Name</label>
+        <input type="text" name="business">
+
+        <label>Email</label>
+        <input type="email" name="email" required>
+
+        <label>Phone</label>
+        <input type="text" name="phone">
+
+        <label>
